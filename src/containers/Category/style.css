@@ -1,0 +1,30 @@
+.modal-header{
+    padding: 5px 15px;
+    background-color: #333;
+}
+.modal-title{
+    font-size: 18px;
+    color: #fff;
+}
+
+.modal-footer{
+    padding: 5px 15px;
+}
+
+.actionBtnContainer{
+    display: flex;
+    align-items: center;
+}
+
+.actionBtnContainer > button{    
+    border: 0;
+    background-color: #333;
+    border-radius: 5px;
+    color: #fff;
+    margin: 0 5px;
+    font-size: 16px;
+}
+
+.actionBtnContainer > button.danger{
+    background-color: red;
+}
