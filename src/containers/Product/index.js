@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { addProduct } from "../../actions";
+import { addProduct, deleteProductById } from "../../actions";
 import { Layout } from "../../components/Layout";
 import { Input } from "../../components/UI/Input";
 import Modal from "../../components/UI/Modal";
@@ -83,6 +83,15 @@ export const Products = (props) => {
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
                   <td>{product.category.name}</td>
+                  <td> 
+                  <button onClick={()=> showProductDetailsModal(product)}>Info</button>
+                  <button onClick={()=> {
+                    const payload = {
+                      productId : product._id
+                    };
+                    dispatch(deleteProductById(payload));
+                  }}>Delete</button>
+                  </td>
                 </tr>
               ))
             : null}

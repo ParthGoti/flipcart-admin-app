@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Form, Row, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -22,18 +22,35 @@ export const Signup = (props) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (!user.loading) {
+      setFirstname("");
+      setLastname("");
+      setEmail("");
+      setPassword("");
+    }
+  }, [user.loading]);
+
+  const userSignup = (e) => {
+    e.preventDefault();
+
+    const user = {
+      firstname,
+      lastname,
+      email,
+      password,
+    };
+
+    dispatch(signup(user));
+  };
+
   if (auth.authenticate) {
-    return <Redirect to={"/"} />;
+    return <Redirect to={`/`} />;
   }
 
   if (user.loading) {
     return <p>Loading...!</p>;
   }
-  const userSignup = (e) => {
-    e.preventDefault();
-    const user = { firstname, lastname, email, password };
-    dispatch(signup(user));
-  };
 
   return (
     <Layout>
